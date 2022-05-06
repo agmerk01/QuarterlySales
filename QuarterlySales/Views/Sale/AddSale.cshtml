@@ -1,0 +1,30 @@
+﻿@model SaleRecord
+
+<h2>Add Sale</h2>
+<form asp-action="AddSale" method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="form-group">
+        <label asp-for="Quarter">Quarter</label>
+        <input asp-for="Quarter" min="1" max="4" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Year">Year</label>
+        <input asp-for="Year" min="2000" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Amount">Amount</label>
+        <input asp-for="Amount" min="1" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="EmployeeID">Employee</label>
+        <select asp-for="EmployeeID">
+            @foreach (Employee e in ViewBag.Employees)
+            {
+                <option value="@e.EmployeeID">@e.FName @e.Lname</option>
+            }
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <a asp-controller="Home" asp-action="Index"
+       class="btn btn-primary">Cancel</a>
+</form>
